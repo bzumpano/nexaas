@@ -1,6 +1,11 @@
 class Store < ApplicationRecord
 
-  #  Validations
+  # Associations
+
+  has_many :stock_items
+
+
+  # Validations
 
   validates_presence_of :name
 
