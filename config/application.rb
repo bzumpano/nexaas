@@ -34,6 +34,7 @@ module Nexaas
 
     config.generators do |g|
       g.test_framework :rspec
+      g.controller_specs true
     end
 
     config.encoding = 'utf-8'
