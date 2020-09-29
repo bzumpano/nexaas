@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe StockItem::WriteOff, type: :model do
-  subject(:write_off) { build(:write_off) }
+  subject(:write_off) { build(:stock_item_write_off) }
 
   describe 'factories' do
     it { is_expected.to be_valid }
@@ -9,7 +9,7 @@ RSpec.describe StockItem::WriteOff, type: :model do
 
   describe 'db' do
     context 'columns' do
-      it { is_expected.to have_db_column(:stock_item_id).of_type(:integer) } }
+      it { is_expected.to have_db_column(:stock_item_id).of_type(:integer) }
       it { is_expected.to have_db_column(:amount).of_type(:integer) }
     end
 

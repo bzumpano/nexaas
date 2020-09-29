@@ -7,7 +7,7 @@ RSpec.describe "Stores", type: :request do
         { store: attributes_for(:store) }
       end
 
-      context 'returns http :ok' do
+      context 'returns http :created' do
         before { post(stores_path, params: valid_params) }
 
         it { expect(response).to have_http_status(:created) }

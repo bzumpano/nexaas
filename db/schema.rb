@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_29_182734) do
+ActiveRecord::Schema.define(version: 2020_09_29_190844) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,14 @@ ActiveRecord::Schema.define(version: 2020_09_29_182734) do
     t.decimal "price", precision: 12, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "stock_item_write_offs", force: :cascade do |t|
+    t.bigint "stock_item_id"
+    t.integer "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["stock_item_id"], name: "index_stock_item_write_offs_on_stock_item_id"
   end
 
   create_table "stock_items", force: :cascade do |t|
@@ -38,6 +46,7 @@ ActiveRecord::Schema.define(version: 2020_09_29_182734) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "stock_item_write_offs", "stock_items"
   add_foreign_key "stock_items", "products"
   add_foreign_key "stock_items", "stores"
 end

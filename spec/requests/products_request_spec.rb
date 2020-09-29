@@ -7,7 +7,7 @@ RSpec.describe 'Products', type: :request do
         { product: attributes_for(:product) }
       end
 
-      context 'returns http :ok' do
+      context 'returns http :created' do
         before { post(products_path, params: valid_params) }
 
         it { expect(response).to have_http_status(:created) }
