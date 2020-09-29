@@ -1,32 +1,31 @@
 require 'rails_helper'
 
-RSpec.describe 'Products', type: :request do
+RSpec.describe "Stores", type: :request do
   describe 'POST #create' do
     context 'valid' do
       let(:valid_params) do
-        { product: attributes_for(:product) }
+        { store: attributes_for(:store) }
       end
 
       context 'returns http :ok' do
-        before { post(products_path, params: valid_params) }
+        before { post(stores_path, params: valid_params) }
 
         it { expect(response).to have_http_status(:created) }
       end
 
-      it 'create product' do
-
+      it 'create store' do
         expect do
-          post(products_path, params: valid_params)
-        end.to change(Product, :count).by(1)
+          post(stores_path, params: valid_params)
+        end.to change(Store, :count).by(1)
       end
     end
 
     context 'invalid' do
       let(:invalid_params) do
-        { product: attributes_for(:product, name: nil) }
+        { store: attributes_for(:store, name: nil) }
       end
 
-      before { post(products_path, params: invalid_params) }
+      before { post(stores_path, params: invalid_params) }
 
       context 'returns http :unprocessable_entity' do
         it { expect(response).to have_http_status(:unprocessable_entity) }
@@ -35,32 +34,32 @@ RSpec.describe 'Products', type: :request do
   end
 
   describe 'PATCH #update' do
-    let(:product) { create(:product) }
+    let(:store) { create(:store) }
 
     context 'valid' do
       let(:updated_name) { 'Name updated' }
       let(:valid_params) do
-        { product: attributes_for(:product, name: updated_name) }
+        { store: attributes_for(:store, name: updated_name) }
       end
 
-      before { patch(product_path(product), params: valid_params) }
+      before { patch(store_path(store), params: valid_params) }
 
       it 'returns http :ok' do
-        patch(product_path(product), params: valid_params)
+        patch(store_path(store), params: valid_params)
         expect(response).to have_http_status(:ok)
       end
 
-      it 'update product' do
-        expect(product.reload.name).to eq(updated_name)
+      it 'update store' do
+        expect(store.reload.name).to eq(updated_name)
       end
     end
 
     context 'invalid' do
       let(:invalid_params) do
-        { product: attributes_for(:product, name: nil) }
+        { store: attributes_for(:store, name: nil) }
       end
 
-      before { patch(product_path(product), params: invalid_params) }
+      before { patch(store_path(store), params: invalid_params) }
 
       context 'returns http :unprocessable_entity' do
         it { expect(response).to have_http_status(:unprocessable_entity) }
@@ -69,28 +68,28 @@ RSpec.describe 'Products', type: :request do
   end
 
   describe 'DELETE #destroy' do
-    let(:product) { create(:product) }
+    let(:store) { create(:store) }
 
     context 'valid' do
       it 'returns http :ok' do
-        delete(product_path(product))
+        delete(store_path(store))
         expect(response).to have_http_status(:ok)
       end
 
-      it 'remove product' do
-        product
+      it 'remove store' do
+        store
 
         expect do
-          delete(product_path(product))
-        end.to change(Product, :count).by(-1)
+          delete(store_path(store))
+        end.to change(Store, :count).by(-1)
       end
     end
 
     context 'invalid' do
       before do
-        allow_any_instance_of(Product).to receive(:destroy!).and_raise(ActiveRecord::RecordNotDestroyed)
+        allow_any_instance_of(Store).to receive(:destroy!).and_raise(ActiveRecord::RecordNotDestroyed)
 
-        delete(product_path(product))
+        delete(store_path(store))
       end
 
       context 'returns http :unprocessable_entity' do
@@ -100,22 +99,22 @@ RSpec.describe 'Products', type: :request do
   end
 
   describe 'GET #show' do
-    let(:product) { create(:product) }
+    let(:store) { create(:store) }
 
     context 'valid' do
-      before { get(product_path(product)) }
+      before { get(store_path(store)) }
 
       it 'returns http :ok' do
         expect(response).to have_http_status(:ok)
       end
 
-      it 'returns product' do
-        expect(JSON.parse(response.body)).to eq(YAML.load(product.to_json))
+      it 'returns store' do
+        expect(JSON.parse(response.body)).to eq(YAML.load(store.to_json))
       end
     end
 
     context 'invalid' do
-      before { get(product_path(0)) }
+      before { get(store_path(0)) }
 
       context 'returns http :not_found' do
         it { expect(response).to have_http_status(:not_found) }
