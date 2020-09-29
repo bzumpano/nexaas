@@ -35,7 +35,15 @@ module BaseController
   private
 
   def resource
-    @resource ||= find_action? ? resource_klass.find(params[:id]) : resource_klass.new(resource_params)
+    @resource ||= find_action? ? find_resource : build_resource
+  end
+
+  def find_resource
+    resource_klass.find(params[:id])
+  end
+
+  def build_resource
+    resource_klass.new(resource_params)
   end
 
   def resource_klass
