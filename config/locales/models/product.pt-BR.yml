@@ -1,0 +1,6 @@
+pt-BR:
+  activerecord:
+    attributes:
+      product:
+        name: Nome
+        price: Valor inicial

@@ -1,0 +1,7 @@
+pt-BR:
+  activerecord:
+    attributes:
+      stock_item:
+        product: Produto
+        store: Loja
+        amount: Quantidade
