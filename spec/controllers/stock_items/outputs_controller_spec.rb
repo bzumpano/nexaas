@@ -14,5 +14,13 @@ RSpec.describe StockItems::OutputsController, type: :controller do
     it 'permitted_params' do
       is_expected.to permit(*%i[amount]).for(:create, params: valid_params).on(:output)
     end
+
+    context 'call worker' do
+      let(:create_output) { StockItem::Operation.where(stock_item_id: stock_item).last }
+
+      before { post(:create, params: valid_params) }
+
+      it { expect(StockItems::AddOutputWorker).to have_enqueued_sidekiq_job(create_output.id) }
+    end
   end
 end
