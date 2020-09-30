@@ -34,4 +34,28 @@ RSpec.describe "StockItems", type: :request do
       end
     end
   end
+
+  describe 'GET #show' do
+    let(:stock_item) { create(:stock_item) }
+
+    context 'valid' do
+      before { get(stock_item_path(stock_item)) }
+
+      it 'returns http :ok' do
+        expect(response).to have_http_status(:ok)
+      end
+
+      it 'returns stock_item' do
+        expect(JSON.parse(response.body).symbolize_keys).to eq(StockItemSerializer.new(stock_item).serializable_hash.dig(:data, :attributes))
+      end
+    end
+
+    context 'invalid' do
+      before { get(stock_item_path(0)) }
+
+      context 'returns http :not_found' do
+        it { expect(response).to have_http_status(:not_found) }
+      end
+    end
+  end
 end
