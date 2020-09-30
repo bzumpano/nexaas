@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2020_09_29_190844) do
   create_table "stock_items", force: :cascade do |t|
     t.bigint "product_id"
     t.bigint "store_id"
-    t.integer "amount"
+    t.integer "amount", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_stock_items_on_product_id"

@@ -12,7 +12,6 @@ class StockItem < ApplicationRecord
 
   validates :product,
     :store,
-    :amount,
     presence: true
 
   validates_numericality_of :amount, greater_than_or_equal_to: 0

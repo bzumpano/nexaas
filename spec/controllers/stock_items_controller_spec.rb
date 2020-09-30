@@ -7,7 +7,7 @@ RSpec.describe StockItemsController, type: :controller do
     end
 
     it 'permitted_params' do
-      is_expected.to permit(*%i[store_id product_id amount]).for(:create, params: valid_params).on(:stock_item)
+      is_expected.to permit(*%i[store_id product_id]).for(:create, params: valid_params).on(:stock_item)
     end
   end
 end

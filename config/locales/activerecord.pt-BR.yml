@@ -5,6 +5,7 @@ pt-BR:
       messages:
         accepted: deve ser aceito
         blank: você precisa preencher
+        required: você precisa preencher
         confirmation: não está de acordo com a confirmação
         empty: você precisa preencher
         equal_to: deve ser igual a %{count}
