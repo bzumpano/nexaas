@@ -109,7 +109,7 @@ RSpec.describe "Stores", type: :request do
       end
 
       it 'returns store' do
-        expect(JSON.parse(response.body)).to eq(YAML.load(store.to_json))
+        expect(JSON.parse(response.body).symbolize_keys).to eq(StoreSerializer.new(store).serializable_hash.dig(:data, :attributes))
       end
     end
 
