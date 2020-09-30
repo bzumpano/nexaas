@@ -16,11 +16,11 @@ RSpec.describe StockItems::OutputsController, type: :controller do
     end
 
     context 'call worker' do
-      let(:create_output) { StockItem::Operation.where(stock_item_id: stock_item).last }
+      let(:created_output) { StockItem::Operation.output.where(stock_item_id: stock_item).last }
 
       before { post(:create, params: valid_params) }
 
-      it { expect(StockItems::AddOutputWorker).to have_enqueued_sidekiq_job(create_output.id) }
+      it { expect(StockItems::AddOutputWorker).to have_enqueued_sidekiq_job(created_output.id) }
     end
   end
 end

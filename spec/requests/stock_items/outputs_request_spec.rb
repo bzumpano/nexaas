@@ -44,4 +44,28 @@ RSpec.describe "StockItems::Outputs", type: :request do
       end
     end
   end
+
+  describe 'GET #show' do
+    let(:stock_item_operation) { create(:stock_item_operation, :output) }
+
+    context 'valid' do
+      before { get(stock_item_output_path(stock_item, stock_item_operation)) }
+
+      it 'returns http :ok' do
+        expect(response).to have_http_status(:ok)
+      end
+
+      it 'returns product' do
+        expect(JSON.parse(response.body)).to eq(YAML.load(stock_item_operation.to_json))
+      end
+    end
+
+    context 'invalid' do
+      before { get(stock_item_output_path(0, 0)) }
+
+      context 'returns http :not_found' do
+        it { expect(response).to have_http_status(:not_found) }
+      end
+    end
+  end
 end
