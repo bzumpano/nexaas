@@ -1,4 +1,4 @@
-class StockItems::OperationsController < ApplicationController
+class StockItems::InputsController < ApplicationController
   PERMITTED_PARAMS = %i[
     amount
   ]
