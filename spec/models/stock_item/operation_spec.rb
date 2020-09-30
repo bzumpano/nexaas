@@ -57,4 +57,26 @@ RSpec.describe StockItem::Operation, type: :model do
 
     it { is_expected.to validate_numericality_of(:amount).is_greater_than(0) }
   end
+
+  describe 'callbacks' do
+    describe 'before_create' do
+      context 'set signed_amount' do
+        context 'when operation_type :input' do
+          let(:operation) { build(:stock_item_operation, :input) }
+
+          before { operation.save }
+
+          it { expect(operation.reload.signed_amount).to eq(operation.amount) }
+        end
+
+        context 'when operation_type :output' do
+          let(:operation) { build(:stock_item_operation, :output) }
+
+          before { operation.save }
+
+          it { expect(operation.reload.signed_amount).to eq(operation.amount * -1) }
+        end
+      end
+    end
+  end
 end

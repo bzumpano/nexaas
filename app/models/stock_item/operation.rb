@@ -1,5 +1,9 @@
 class StockItem::Operation < ApplicationRecord
 
+  # Callbacks
+
+  before_create :set_signed_amount
+
   # Enums
 
   enum status: %i[
@@ -26,4 +30,10 @@ class StockItem::Operation < ApplicationRecord
 
 
   validates_numericality_of :amount, greater_than: 0
+
+  private
+
+  def set_signed_amount
+    self.signed_amount = output? ? amount * -1 : amount
+  end
 end
