@@ -1,3 +1,5 @@
+Acessar no Heroku: https://bzumpano-nexaas.herokuapp.com/
+
 # Instalação
 
 ## Dependências
@@ -54,7 +56,7 @@ url: /products
 ```
 Exemplo:
 ```bash
-curl -v --header "Content-Type: application/json" -X POST -d '{"product":{"name":"Copo","price":"1.5"}}' http://localhost:3000/products
+curl -v --header "Content-Type: application/json" -X POST -d '{"product":{"name":"Copo","price":"1.5"}}' https://bzumpano-nexaas.herokuapp.com/products
 < HTTP/1.1 201 Created
 < Content-Type: application/json; charset=utf-8
 < ETag: W/"d2baaf0d20079f2e5aeb3bf820d44cb4"
@@ -73,7 +75,7 @@ url: /products/:id
 ```
 Exemplo:
 ```bash
-curl -v http://localhost:3000/products/1
+curl -v https://bzumpano-nexaas.herokuapp.com/products/1
 < HTTP/1.1 200 OK
 < Content-Type: application/json; charset=utf-8
 < ETag: W/"d2baaf0d20079f2e5aeb3bf820d44cb4"
@@ -93,7 +95,7 @@ accepted params: product: [name, price]
 ```
 Exemplo:
 ```bash
-curl -v --header "Content-Type: application/json" -X PATCH -d '{"product":{"name":"Copo pequeno","price":"1.5"}}' http://localhost:3000/products/1
+curl -v --header "Content-Type: application/json" -X PATCH -d '{"product":{"name":"Copo pequeno","price":"1.5"}}' https://bzumpano-nexaas.herokuapp.com/products/1
 < HTTP/1.1 200 OK
 < Content-Type: application/json; charset=utf-8
 < ETag: W/"dbace6fc5574d8f36b83b83ac96c1234"
@@ -113,7 +115,7 @@ accepted params: product: [name, price]
 ```
 Exemplo:
 ```bash
-curl -v -X DELETE http://localhost:3000/products/1
+curl -v -X DELETE https://bzumpano-nexaas.herokuapp.com/products/1
 < HTTP/1.1 200 OK
 < Content-Type: application/json; charset=utf-8
 < ETag: W/"aa0ea39ee928c2512655fa8e2c796529"
@@ -135,7 +137,7 @@ accepted params: store: [name]
 ```
 Exemplo:
 ```bash
-curl -v --header "Content-Type: application/json" -X POST -d '{"store":{"name":"Loja 1"}}' http://localhost:3000/stores
+curl -v --header "Content-Type: application/json" -X POST -d '{"store":{"name":"Loja 1"}}' https://bzumpano-nexaas.herokuapp.com/stores
 < HTTP/1.1 201 Created
 < Content-Type: application/json; charset=utf-8
 < ETag: W/"8e559f1e52074543063646a4dcb41d0e"
@@ -154,7 +156,7 @@ url: /stores/:id
 ```
 Exemplo:
 ```bash
-curl -v http://localhost:3000/stores/1
+curl -v https://bzumpano-nexaas.herokuapp.com/stores/1
 < HTTP/1.1 200 OK
 < Content-Type: application/json; charset=utf-8
 < ETag: W/"8e559f1e52074543063646a4dcb41d0e"
@@ -174,7 +176,7 @@ accepted params: store: [name]
 ```
 Exemplo:
 ```bash
-curl -v --header "Content-Type: application/json" -X PATCH -d '{"store":{"name":"Filial 1"}}' http://localhost:3000/stores/1
+curl -v --header "Content-Type: application/json" -X PATCH -d '{"store":{"name":"Filial 1"}}' https://bzumpano-nexaas.herokuapp.com/stores/1
 < HTTP/1.1 200 OK
 < Content-Type: application/json; charset=utf-8
 < ETag: W/"d295b9512549676de0cda82be5dad72a"
@@ -194,7 +196,7 @@ accepted params: store: [name]
 ```
 Exemplo:
 ```bash
-curl -v -X DELETE http://localhost:3000/stores/1
+curl -v -X DELETE https://bzumpano-nexaas.herokuapp.com/stores/1
 < HTTP/1.1 200 OK
 < Content-Type: application/json; charset=utf-8
 < ETag: W/"d295b9512549676de0cda82be5dad72a"
@@ -203,7 +205,6 @@ curl -v -X DELETE http://localhost:3000/stores/1
 < X-Runtime: 0.013464
 < Transfer-Encoding: chunked
 <
-* Connection #0 to host localhost left intact
 {"id":1,"name":"Filial 1"}
 ```
 
@@ -218,7 +219,7 @@ accepted params: stock_item: [store_id, product_id]
 ```
 Exemplo:
 ```bash
-curl -v --header "Content-Type: application/json" -X POST -d '{"stock_item":{"store_id":1, "product_id":1}}' http://localhost:3000/stock_items
+curl -v --header "Content-Type: application/json" -X POST -d '{"stock_item":{"store_id":1, "product_id":1}}' https://bzumpano-nexaas.herokuapp.com/stock_items
 < HTTP/1.1 201 Created
 < Content-Type: application/json; charset=utf-8
 < ETag: W/"6d2b927b8c1333b8d1ea8d3457ed54d3"
@@ -237,7 +238,7 @@ url: /stock_items/:id
 ```
 Exemplo:
 ```bash
-curl -v http://localhost:3000/stock_items/1
+curl -v https://bzumpano-nexaas.herokuapp.com/stock_items/1
 < HTTP/1.1 200 OK
 < Content-Type: application/json; charset=utf-8
 < ETag: W/"6d2b927b8c1333b8d1ea8d3457ed54d3"
@@ -260,7 +261,7 @@ accepted params: input: [amount]
 ```
 Exemplo:
 ```bash
-curl -v --header "Content-Type: application/json" -X POST -d '{"input":{"amount":1}}' http://localhost:3000/stock_items/1/inputs
+curl -v --header "Content-Type: application/json" -X POST -d '{"input":{"amount":1}}' https://bzumpano-nexaas.herokuapp.com/stock_items/1/inputs
 < HTTP/1.1 201 Created
 < Content-Type: application/json; charset=utf-8
 < ETag: W/"4f9c8bda67faea8c474c3dc4ccf69eaf"
@@ -279,7 +280,7 @@ url: /stock_items/:stock_item_id/inputs/:id
 ```
 Exemplo:
 ```bash
-curl -v http://localhost:3000/stock_items/1/inputs/1
+curl -v https://bzumpano-nexaas.herokuapp.com/stock_items/1/inputs/1
 < HTTP/1.1 200 OK
 < Content-Type: application/json; charset=utf-8
 < ETag: W/"4f9c8bda67faea8c474c3dc4ccf69eaf"
@@ -303,7 +304,7 @@ accepted params: output: [amount]
 ```
 Exemplo:
 ```bash
-curl -v --header "Content-Type: application/json" -X POST -d '{"output":{"amount":1}}' http://localhost:3000/stock_items/1/outputs
+curl -v --header "Content-Type: application/json" -X POST -d '{"output":{"amount":1}}' https://bzumpano-nexaas.herokuapp.com/stock_items/1/outputs
 < HTTP/1.1 201 Created
 < Content-Type: application/json; charset=utf-8
 < ETag: W/"17d701437723b40ae39f082041e8def5"
@@ -322,7 +323,7 @@ url: /stock_items/:stock_item_id/outputs/:id
 ```
 Exemplo:
 ```bash
-curl -v http://localhost:3000/stock_items/1/outputs/1
+curl -v https://bzumpano-nexaas.herokuapp.com/stock_items/1/outputs/1
 < HTTP/1.1 200 OK
 < Content-Type: application/json; charset=utf-8
 < ETag: W/"4b0dccc485f47ea698abb17f4e2af7db"
