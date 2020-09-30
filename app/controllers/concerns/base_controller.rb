@@ -29,7 +29,11 @@ module BaseController
   # helpers
 
   def object_response(object, status = :ok)
-    render json: object, status: status
+    if resource_serializer_klass.present? && object.try(:id).present?
+      render json: resource_serializer_klass.new(object).serializable_hash.dig(:data, :attributes), status: status
+    else
+      render json: object, status: status
+    end
   end
 
   private
@@ -48,6 +52,10 @@ module BaseController
 
   def resource_klass
     resource_name.camelize.constantize
+  end
+
+  def resource_serializer_klass
+    "#{resource_name.camelize}Serializer".constantize rescue nil
   end
 
   def resource_symbol

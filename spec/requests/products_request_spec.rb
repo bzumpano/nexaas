@@ -110,7 +110,7 @@ RSpec.describe 'Products', type: :request do
       end
 
       it 'returns product' do
-        expect(JSON.parse(response.body)).to eq(YAML.load(product.to_json))
+        expect(JSON.parse(response.body).symbolize_keys).to eq(ProductSerializer.new(product).serializable_hash.dig(:data, :attributes))
       end
     end
 
