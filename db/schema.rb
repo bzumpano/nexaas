@@ -22,12 +22,15 @@ ActiveRecord::Schema.define(version: 2020_09_29_190844) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "stock_item_write_offs", force: :cascade do |t|
+  create_table "stock_item_operations", force: :cascade do |t|
     t.bigint "stock_item_id"
+    t.integer "operation_type"
+    t.integer "status", default: 0
+    t.integer "signed_amount"
     t.integer "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["stock_item_id"], name: "index_stock_item_write_offs_on_stock_item_id"
+    t.index ["stock_item_id"], name: "index_stock_item_operations_on_stock_item_id"
   end
 
   create_table "stock_items", force: :cascade do |t|
@@ -46,7 +49,7 @@ ActiveRecord::Schema.define(version: 2020_09_29_190844) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "stock_item_write_offs", "stock_items"
+  add_foreign_key "stock_item_operations", "stock_items"
   add_foreign_key "stock_items", "products"
   add_foreign_key "stock_items", "stores"
 end

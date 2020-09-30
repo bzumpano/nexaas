@@ -1,4 +1,4 @@
-class StockItems::WriteOffsController < ApplicationController
+class StockItems::OperationsController < ApplicationController
   PERMITTED_PARAMS = %i[
     amount
   ]
@@ -6,7 +6,7 @@ class StockItems::WriteOffsController < ApplicationController
   private
 
   def resource_klass
-    StockItem::WriteOff
+    StockItem::Operation
   end
 
   def stock_item
@@ -14,6 +14,6 @@ class StockItems::WriteOffsController < ApplicationController
   end
 
   def build_resource
-    stock_item.write_offs.new(resource_params)
+    stock_item.operations.input.new(resource_params)
   end
 end

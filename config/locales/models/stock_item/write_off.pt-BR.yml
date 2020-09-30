@@ -1,6 +1,0 @@
-pt-BR:
-  activerecord:
-    attributes:
-      stock_item/write_off:
-        stock_item: Item do estoque
-        amount: Quantidade

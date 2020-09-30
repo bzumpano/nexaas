@@ -24,7 +24,7 @@ RSpec.describe StockItem, type: :model do
     it { is_expected.to belong_to(:product) }
     it { is_expected.to belong_to(:store) }
 
-    it { is_expected.to have_many(:write_offs) }
+    it { is_expected.to have_many(:operations) }
   end
 
   describe 'validations' do

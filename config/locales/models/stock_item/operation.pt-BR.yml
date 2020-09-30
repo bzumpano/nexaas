@@ -1,0 +1,16 @@
+pt-BR:
+  activerecord:
+    attributes:
+      stock_item/operation:
+        stock_item: Item do estoque
+        signed_amount: Quantidade
+        amount: Quantidade
+        operation_type: Operação
+        operation_types:
+          input: Entrada
+          output: Saída
+        status: Status
+        statuses:
+          pending: Pendente
+          success: Sucesso
+          insufficient_stock: Estoque insuficiente
