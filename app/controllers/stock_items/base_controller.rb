@@ -18,6 +18,10 @@ class StockItems::BaseController < ApplicationController
     StockItem::Operation
   end
 
+  def resource_serializer_klass
+    StockItem::OperationSerializer
+  end
+
   def stock_item
     @stock_item ||= StockItem.find(params[:stock_item_id])
   end

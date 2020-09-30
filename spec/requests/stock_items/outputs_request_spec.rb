@@ -46,17 +46,17 @@ RSpec.describe "StockItems::Outputs", type: :request do
   end
 
   describe 'GET #show' do
-    let(:stock_item_operation) { create(:stock_item_operation, :output) }
+    let(:operation) { create(:stock_item_operation, :output) }
 
     context 'valid' do
-      before { get(stock_item_output_path(stock_item, stock_item_operation)) }
+      before { get(stock_item_output_path(stock_item, operation)) }
 
       it 'returns http :ok' do
         expect(response).to have_http_status(:ok)
       end
 
       it 'returns product' do
-        expect(JSON.parse(response.body)).to eq(YAML.load(stock_item_operation.to_json))
+        expect(JSON.parse(response.body).symbolize_keys).to eq(StockItem::OperationSerializer.new(operation).serializable_hash.dig(:data, :attributes))
       end
     end
 
